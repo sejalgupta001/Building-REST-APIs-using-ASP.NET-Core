@@ -36,7 +36,6 @@ Design and develop **any one** of the following applications with the help of an
 Submit the following:
 
 * Source Code
-* Screenshots of the Application
 
 
 ---
