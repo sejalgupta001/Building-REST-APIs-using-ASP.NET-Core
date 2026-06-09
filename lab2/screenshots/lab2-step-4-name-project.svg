@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Name the Project</title>
+  <desc id="desc">Screenshot-style illustration showing the project name Lab02 entered.</desc>
+  <rect width="960" height="540" fill="#f4f6f8"/>
+  <rect x="96" y="58" width="768" height="424" rx="8" fill="#ffffff" stroke="#ccd3dc"/>
+  <rect x="96" y="58" width="768" height="46" rx="8" fill="#334155"/>
+  <text x="480" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#ffffff">Configure your new project</text>
+  <text x="150" y="165" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#111827">Project name</text>
+  <rect x="150" y="190" width="520" height="50" rx="6" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+  <text x="174" y="223" font-family="Arial, sans-serif" font-size="22" fill="#111827">Lab02</text>
+  <text x="150" y="292" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Location</text>
+  <rect x="150" y="315" width="520" height="46" rx="6" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="174" y="344" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Documents/Visual Studio Projects</text>
+  <text x="130" y="440" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#2563eb">Step 4: Name the project Lab02</text>
+</svg>
