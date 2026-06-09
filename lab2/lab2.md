@@ -1,4 +1,4 @@
-# Lab No. 02 | Loops, Strings & Arrays in C #
+# Lab No. 02 | Loops, Strings & Arrays in C#
 
 ## Objective
 
