@@ -1,4 +1,4 @@
-# Lab No. 02 | Loops, Strings & Arrays in C#
+# Lab No. 02 | Loops, Strings & Arrays in C #
 
 ## Objective
 
@@ -140,25 +140,7 @@ char ch = Console.ReadKey().KeyChar;
 
 ## Steps to Create a Console Application
 
-1. Open **Visual Studio**.
-
-   ![Open Visual Studio](screenshots/lab2-step-1-open-visual-studio.svg)
-
-2. Click **Create a new project**.
-
-   ![Create a new project](screenshots/lab2-step-2-create-new-project.svg)
-
-3. Search for and select **Console App (.NET)**.
-
-   ![Select Console App](screenshots/lab2-step-3-select-console-app.svg)
-
-4. Name the project **Lab02**.
-
-   ![Name the project](screenshots/lab2-step-4-name-project.svg)
-
-5. Click **Create**.
-
-   ![Create project](screenshots/lab2-step-5-create-project.svg)
+ss here
 
 ### Expected Project Structure
 
@@ -635,13 +617,21 @@ Character 'z' not found in the string.
 
 ---
 
-# Student Exercise
+# Student Tasks
 
-1. Modify Task 2 to also count how many uppercase and lowercase characters were in the original string.
-2. Modify Task 3 to also print the starting index where string 2 was found inside string 1.
-3. Modify Task 4 to also find the **largest** and **smallest** elements in the same pass.
-4. Extend Task 5 to support modulus `%` as a fifth operation.
-5. Modify Task 8 to replace **all** occurrences of the character with `'D'`, not just first and last.
+## section A
+
+1. Write a program to change the case of entered character.
+2. Write a program to Replace lower case characters to upper case and Vice-versa.
+3. Take 2 strings from the user, and validate 2nd string is contains by 1st or not.
+4. Find the second largest element from an array.
+5. Write a program to create a Simple Calculator for two numbers (Addition, Multiplication, Subtraction, Division) [using elseif ladder & Switch Case]
+
+## section B
+
+6. Find the sum of all elements in an array.
+2. Count odd and even numbers in an array.
+3. Write a program which find out the first and last occurrence of a character and then replace that character with ‘D’.
 
 ---
 
