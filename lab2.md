@@ -140,7 +140,18 @@ char ch = Console.ReadKey().KeyChar;
 
 ## Steps to Create a Console Application
 
-ss here
+1.  Create new project
+<img width="1600" height="237" alt="createnewproject" src="https://github.com/user-attachments/assets/ed91d477-ef25-4211-aed0-aa5960a339f1" />
+
+2. Select Console App
+<img width="1600" height="288" alt="consoleap" src="https://github.com/user-attachments/assets/24e19836-0203-4cf7-921d-35386943d975" />
+
+3. Configure the app name
+<img width="1600" height="899" alt="configure" src="https://github.com/user-attachments/assets/63f99508-3b8a-45fb-9115-ddcee324b05e" />
+
+4. Additional settings
+<img width="1600" height="890" alt="consoleadditionalinfo" src="https://github.com/user-attachments/assets/635b5afb-952c-4ff6-bd6d-152615dc97c9" />
+
 
 ### Expected Project Structure
 
