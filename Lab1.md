@@ -42,6 +42,4 @@ Submit the following:
 
 ## Submission
 
-Submit your task using the Google Form below:
-
-**Google Form Link:** https://forms.gle/MwQqSa9yjFkf1piA6
+Submit your task in the Google Form provided you in Lab
