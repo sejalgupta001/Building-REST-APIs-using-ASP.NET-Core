@@ -184,7 +184,7 @@ Student Gets DisplayPerson()
 
 
 
-<img width="1091" height="567" alt="image" src="https://github.com/user-attachments/assets/087aeb64-6de5-437d-9baf-e7976b08bb0a" />
+<img width="1091" height="567" alt="image" src="https://files.catbox.moe/quv89e.png" />
 
 
 ---
