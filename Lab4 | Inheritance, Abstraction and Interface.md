@@ -138,7 +138,7 @@ public class Person
 
 ### Explanation
 
-Class Person contains common information shared by all people Like (Student, Faculty).
+Class Person contains common information shared by all people like Students and Faculty.
 
 ---
 
@@ -436,7 +436,7 @@ Consider the following structure:
 
 This can create ambiguity when both `B` and `C` contain methods with the same name.
 
-This problem is known as the :  `Diamond Problem`
+This problem is known as the **Diamond Problem**.
 
 Because of this, C# prevents Multiple and Hybrid Inheritance through classes.
 
@@ -477,6 +477,8 @@ Because of this, C# prevents Multiple and Hybrid Inheritance through classes.
 - It does not tell how to do it.
 - A class that implements an interface must follow all rules.
 - The class provides its own implementation.
+- **Cannot create objects of interface directly** — An interface only defines contracts, not actual implementations.
+- **Why?** It has no concrete logic/code inside its methods, only method signatures. An object needs actual behavior to exist.
 
 **This promotes:**
 
@@ -531,13 +533,11 @@ public class Faculty : IPerson
 
 ## Explanation
 
-Interface creates a contract.
+An interface creates a contract (an agreement) between the interface and implementing classes.
 
-It forces every class implementing it to define:
+It forces every class implementing it to provide actual implementations of all the interface methods.
 
-```c#
-Person()
-```
+In the example above, both `Student` and `Faculty` must implement the `ShowRole()` method.
 
 ---
 
@@ -607,10 +607,11 @@ public class Person : IStudent, IFaculty
 - It avoids the problems of multiple class inheritance.
 ---
 
-## Implementation of hierarchy inheritance using interface 
+## Implementation of Hybrid Inheritance using Interface
+
 ### Example
 
-```c#
+When a single class needs to inherit behavior from multiple sources (like both Student and Faculty characteristics), we use multiple interfaces:
 public interface IStudent
 {
     void Study();
@@ -640,8 +641,8 @@ In this example:
 - `IStudent` defines `Study()`.
 - `IFaculty` defines `Teach()`.
 - `Person` provides implementations for both methods.
-- This provides flexibility similar to Multiple/Hybrid Inheritance.
-- Ambiguity issues are avoided.
+- This achieves Hybrid Inheritance behavior without the Diamond Problem.
+- Ambiguity is avoided because interfaces don't contain conflicting implementations. 
 ---
 
 # Class Hierarchy Diagram
@@ -673,6 +674,8 @@ In this example:
 - Users focus on what an object does, not how it works.
 - Details are not removed, only hidden from users.
 - It makes programs simple and easy to use.
+- **Cannot create objects of abstract class directly** — An abstract class contains one or more abstract methods with no implementation.
+- **Why?** It's incomplete. You cannot instantiate an incomplete blueprint. You must create a derived class that provides actual implementation for all abstract methods.
 
 <img width="885" height="274" alt="image" src="https://github.com/user-attachments/assets/7ce3751e-ff08-463e-b8ab-8c1f3df76ea3" />
 
@@ -858,20 +861,18 @@ Create a base class `Staff` and a derived class `Doctor` to calculate total sala
                }
            }
 ```
-### Explaination:
+### Explanation
 
-## Staff (Base Class)
+**Staff (Base Class)**
+- `Name` — Staff member's name
+- `BasicPay` — Base salary
+- `CalculateSalary()` — Method to calculate salary (marked as virtual for overriding)
+- Constructor to initialize Name and BasicPay
 
-### Contains common properties:
-    Name
-    BasicPay
-    Provides a method CalculateSalary().
-
-### Doctor (Derived Class)
-
-    Inherits from Staff.
-    Adds DoctorAllowance.
-    Overrides CalculateSalary() to include allowance.
+**Doctor (Derived Class)**
+- Inherits all properties and methods from Staff
+- Adds `DoctorAllowance` — Additional allowance for doctors
+- Overrides `CalculateSalary()` to include the doctor allowance in the calculation
 
 **Formula** :
 **Total Salary** = Basic Pay + Doctor Allowance
