@@ -693,7 +693,6 @@ namespace ConsoleApp1
 ---
 # LAB - 3 Create a Student Grade Book using Dictionary<int, Student> where each student record contains subject-wise marks. Implement features to add/update student details, calculate percentage, and display reports
 
-
 ### Program.cs
 ``` csharp
 using System;
@@ -872,9 +871,6 @@ namespace ConsoleApp1
 }
 
 ```
----
-
-
 ---
 # LAB - 5 Implement a Role-Based Permission System using HashSet<string> to manage user permissions. Support role assignment, permission checking, and merging of permissions.
 
