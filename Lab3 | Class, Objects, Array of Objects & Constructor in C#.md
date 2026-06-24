@@ -36,8 +36,7 @@ We create a common format first, then create records from that format and use fu
 
 
 # Class and Object Relationship Diagram
- 
-![Class and Object Relationship Diagram](https://res.cloudinary.com/dpdxoxtog/image/upload/v1781163443/ChatGPT_Image_Jun_11_2026_12_59_54_PM_aj7ejh.png)
+ <img src="https://res.cloudinary.com/dpdxoxtog/image/upload/v1781163443/ChatGPT_Image_Jun_11_2026_12_59_54_PM_aj7ejh.png" style="max-width: 600px; width: 100%;" />
 
 ## Explanation of Diagram
 
