@@ -422,11 +422,3 @@ Error: Age cannot be negative.
 8. Write a program to create an interface IPayment with a method to process payments. Implement the interface in different payment classes and use exception handling to handle invalid payment amounts or transaction failures.
 
 ---
-
-# Additional Practice Programs
-
-1. Age Validation System
-2. Voting Eligibility Checker
-3. Student Grade Calculator
-4. Number Guessing Game
-5. ATM Withdrawal Validation
