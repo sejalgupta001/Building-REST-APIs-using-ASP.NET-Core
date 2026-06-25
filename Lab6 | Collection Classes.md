@@ -296,7 +296,7 @@ class Program
 ---
 # Type Casting - Boxing and Unboxing in C# 
 
-<img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/5478be6f-65c9-4fb1-b83e-06cbfe6bd7c1" />
+<img width="1536" height="785" alt="ChatGPT Image Jun 23, 2026, 10_10_03 PM" src="https://github.com/user-attachments/assets/ae6a902d-e189-47d2-ace8-13ffa63162c1" />
 
 ## Boxing
 Definition:
