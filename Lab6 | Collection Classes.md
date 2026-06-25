@@ -1,4 +1,4 @@
-# Collections in C# (List, Stack, Queue, Dictionary, etc...)
+<img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/825c95de-8f99-4680-b57f-13df1849a8fd" /><img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/0188f2de-5753-4b7d-8fc6-2817c4e81b54" /># Collections in C# (List, Stack, Queue, Dictionary, etc...)
 
 ## What is a Collection?
 
@@ -296,7 +296,8 @@ class Program
 ---
 # Type Casting - Boxing and Unboxing in C# 
 
-![alt text](blob:https://markdownviewer.pages.dev/70d86e4a-29ef-4c08-b241-6f44c8f05307)
+<img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/5478be6f-65c9-4fb1-b83e-06cbfe6bd7c1" />
+
 ## Boxing
 Definition:
 - Boxing is the process of converting a value type (e.g., int, double, char, bool) into a reference type (object).
