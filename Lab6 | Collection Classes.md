@@ -1,4 +1,4 @@
-<img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/825c95de-8f99-4680-b57f-13df1849a8fd" /><img width="1536" height="1024" alt="ChatGPT Image Jun 23, 2026, 10_09_12 PM" src="https://github.com/user-attachments/assets/0188f2de-5753-4b7d-8fc6-2817c4e81b54" /># Collections in C# (List, Stack, Queue, Dictionary, etc...)
+
 
 ## What is a Collection?
 
@@ -296,7 +296,7 @@ class Program
 ---
 # Type Casting - Boxing and Unboxing in C# 
 
-<img width="1536" height="785" alt="ChatGPT Image Jun 23, 2026, 10_10_03 PM" src="https://github.com/user-attachments/assets/ae6a902d-e189-47d2-ace8-13ffa63162c1" />
+<img width="1536" height="785" alt="ChatGPT Image Jun 23, 2026, 10_10_03 PM" src="https://github.com/user-attachments/assets/69c77f0e-bac5-4ba2-82b0-6ff2fed9465a" />
 
 ## Boxing
 Definition:
