@@ -1200,9 +1200,9 @@ namespace ConsoleApp1
 {
     internal class Student
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int age { get; set; }
+        public int id 
+        public string name 
+        public int age 
 
         public Student(int id, string name, int age)
         {
@@ -1377,15 +1377,15 @@ namespace ConsoleApp1
 {
     internal class Student
     {
-        public int Id { get; set; }
+        public int Id 
 
-        public string Name { get; set; }
+        public string Name 
 
-        public int Math { get; set; }
+        public int Math 
 
-        public int Physics { get; set; }
+        public int Physics 
 
-        public int Chemistry { get; set; }
+        public int Chemistry 
 
         public Student(int Id, string Name, int Math, int Physics, int Chemistry)
         {
@@ -1415,8 +1415,8 @@ using System.Collections.Generic;
 
 class Role
 {
-    public string RoleName { get; set; }
-    public HashSet<string> Permissions { get; set; }
+    public string RoleName 
+    public HashSet<string> Permissions 
 
     public Role(string roleName)
     {
@@ -1427,8 +1427,8 @@ class Role
 
 class User
 {
-    public string UserName { get; set; }
-    public List<Role> Roles { get; set; }
+    public string UserName 
+    public List<Role> Roles 
 
     public User(string userName)
     {
