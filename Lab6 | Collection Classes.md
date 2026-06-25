@@ -1,8 +1,8 @@
-# Collections in C#
+# Collections in C# (List, Stack, Queue, Dictionary, etc...)
 
 ## What is a Collection?
 
-A **Collection** is a class that allows us to store and manage multiple objects dynamically.
+- A **Collection** is a class that allows us to store and manage multiple objects dynamically.
 
 ### Why Use Collections?
 
@@ -55,11 +55,11 @@ Collections
 ---
 ### What is FIFO?
 
-FIFO means First In First Out and is used by Queue.
+- FIFO means First In First Out and is used by a queue.
 
 ### What is LIFO?
 
-LIFO means Last In First Out and is used by Stack.
+- LIFO means Last In First Out and is used by a stack.
 
 ---
 
@@ -67,19 +67,8 @@ LIFO means Last In First Out and is used by Stack.
 
 ## 1. Non-Generic Collections
 
-#### Definition:
-#### Non-Generic Collections are collections that store data as the object type. They can store different types of data in the same collection.
-
-| Collection   | Generic Alternative          | 
-| ------------ | ---------------------------- |
-| `ArrayList`  | `List<T>`                    |
-| `Hashtable`  | `Dictionary<TKey,TValue>`    |
-| `Queue`      | `Queue<T>`                   |
-| `Stack`      | `Stack<T>`                   |
-| `SortedList` | `SortedList<TKey,TValue>`    |
-| `BitArray`   | No direct generic equivalent |
-
----
+Definition:
+- Non-Generic Collections are collections that store data as the object type. They can store different types of data in the same collection.
 
 | Collection   | Generic Alternative          | Short Explanation                                                  |
 | ------------ | ---------------------------- | ------------------------------------------------------------------ |
@@ -93,30 +82,86 @@ LIFO means Last In First Out and is used by Stack.
 ### Example
 
 ```csharp
+using System;
 using System.Collections;
 
-ArrayList list = new ArrayList();
-
-list.Add(10);
-list.Add("Daksh");
-list.Add(true);
-
-foreach(var item in list)
+class Program
 {
-    Console.WriteLine(item);
+    static void Main()
+    {
+        // Syntax
+        // Collections_class Obj = new Collections();
+           ArrayList         list = new ArrayList();
+
+        // Add
+        list.Add(10);
+        list.Add("Daksh");
+        list.Add(true);
+
+        // Display
+        Console.WriteLine("Original List:");
+        foreach (var item in list)
+        {
+            Console.WriteLine(item);
+        }
+
+            //Original List:
+            //10
+            //Daksh
+            //True
+
+        // Insert
+        list.Insert(1, "Rajkot");
+
+        // Remove
+        list.Remove(true);
+
+        // Contains
+        Console.WriteLine("\nContains Daksh: " + list.Contains("Daksh"));
+
+          //Contains Daksh: True
+
+        // IndexOf
+        Console.WriteLine("Index of Daksh: " + list.IndexOf("Daksh"));
+
+          //Index of Daksh: 1
+
+        // Count
+        Console.WriteLine("Count: " + list.Count);
+
+          //Count: 3
+
+        // Reverse
+        list.Reverse();
+
+
+        Console.WriteLine("\nAfter Reverse:");
+        foreach (var item in list)
+        {
+            Console.WriteLine(item);
+        }
+
+        //After Reverse:
+        //Daksh
+        //Rajkot
+        //10
+
+        // Clear
+        list.Clear();
+
+        Console.WriteLine("\nCount after Clear: " + list.Count);
+
+        //Count after Clear: 0
+    }
 }
-//output 
-// 10
-//Daksh
-//True
 ```
 
 ---
 
 ## 2. Generic Collections
 
-#### Definition:
-#### Generic Collections are collections that store data of a specific type. They provide type safety, better performance, and avoid boxing/unboxing.
+Definition:
+- Generic Collections are collections that store data of a specific type. They provide type safety, better performance, and avoid boxing/unboxing.
 
 ### < T > = DATA TYPE 
 
@@ -137,16 +182,105 @@ foreach(var item in list)
 ### Example
 
 ```csharp
+using System;
+using System.Collections.Generic;
 
-List<string> students = new List<string>();
-
-students.Add("Daksh");
-students.Add("Raj");
-students.Add("Meet");
-
-foreach(string student in students)
+class Program
 {
-    Console.WriteLine(student);
+    static void Main()
+    {
+        // Create List
+        // Syntax 
+        //Collection_Class<DataType> Obj = new Collection<DataType>();
+
+        List<string> students = new List<string>();
+
+        // Add()
+        students.Add("Daksh");
+        students.Add("Raj");
+        students.Add("Meet");
+        // List: Daksh, Raj, Meet
+
+        // Display
+        foreach (string student in students)
+        {
+            Console.WriteLine(student);
+        }
+        /*
+        Output:
+        Daksh
+        Raj
+        Meet
+        */
+
+        // Count
+        Console.WriteLine(students.Count);
+        // Output: 3
+
+        // Insert()
+        students.Insert(1, "Jay");
+        // List: Daksh, Jay, Raj, Meet
+
+        // Contains()
+        Console.WriteLine(students.Contains("Raj"));
+        // Output: True
+
+        // IndexOf()
+        Console.WriteLine(students.IndexOf("Raj"));
+        // Output: 2
+
+        // Remove()
+        students.Remove("Raj");
+        // List: Daksh, Jay, Meet
+
+        // RemoveAt()
+        students.RemoveAt(0);
+        // List: Jay, Meet
+
+        // AddRange()
+        students.AddRange(new List<string> { "Krunal", "Dev" });
+        // List: Jay, Meet, Krunal, Dev
+
+        // Sort()
+        students.Sort();
+        /*
+        Output:
+        Dev
+        Jay
+        Krunal
+        Meet
+        */
+
+        // Reverse()
+        students.Reverse();
+        /*
+        Output:
+        Meet
+        Krunal
+        Jay
+        Dev
+        */
+
+        // Display Final List
+        foreach (string student in students)
+        {
+            Console.WriteLine(student);
+        }
+
+        /*
+        Output:
+        Meet
+        Krunal
+        Jay
+        Dev
+        */
+
+        // Clear()
+        students.Clear();
+
+        Console.WriteLine(students.Count);
+        // Output: 0
+    }
 }
 ```
 
@@ -160,19 +294,39 @@ foreach(string student in students)
 | Slower                          | Faster                                  |
 | Example: ArrayList              | Example: List<T>                        |
 ---
-# Boxing and Unboxing in C#
+# Type Casting - Boxing and Unboxing in C# 
 
+![alt text](blob:https://markdownviewer.pages.dev/70d86e4a-29ef-4c08-b241-6f44c8f05307)
 ## Boxing
-### Definition:
-Boxing is the process of converting a value type (e.g., int, double, char, bool) into a reference type (object).
+Definition:
+- Boxing is the process of converting a value type (e.g., int, double, char, bool) into a reference type (object).
 
 ### or
 
 Boxing is the implicit conversion of a value type to an object type. The value is copied from the stack to the heap
 
 ``` csharp
-int num = 10;      // Value Type
-object obj = num;  // Boxing
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int num = 10;      // Value Type
+        object obj = num;  // Boxing
+
+        Console.WriteLine(num);
+        // Output: 10
+
+        Console.WriteLine(obj);
+        // Output: 10
+
+      // How it work
+       //int num = 10;      Stored in Stack
+     //object obj = num;   Value copied to Heap
+
+    }
+}
  ```
 ### What Happens?
 - Memory is allocated on the Heap.
@@ -181,23 +335,38 @@ object obj = num;  // Boxing
 ---
 
 # Unboxing
-## Definition:
-Unboxing is the process of converting a boxed object back to its original value type.
+Definition:
+- Unboxing is the process of converting a boxed object back to its original value type.
 
 ### or 
 
-Unboxing is the explicit conversion of a boxed object back to its original value type
+- Unboxing is the explicit conversion of a boxed object back to its original value type
 ``` csharp
-object obj = 10;  // Boxing
-int num = (int)obj; // Unboxing
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int num = 10;      // Value Type
+
+        object obj = num;  // Boxing
+
+        int n = (int)obj;  // Unboxing
+
+        Console.WriteLine(n);
+        // Output: 10
+    }
+}
  ```
+
 #### 
 #### What Happens?
 - CLR checks whether the object contains the correct value type.
 - Value is copied from the Heap back to the Stack.
 
 
-## Example 
+## common Example 
 ``` csharp 
 using System;
 
@@ -238,9 +407,9 @@ By using Generic Collections such as List<T> and Dictionary<TKey,TValue> instead
 ---
 # List< T >
 
-## Definition
+Definition
 
-List< T > is a generic collection used to store elements of the same data type.
+- List< T > is a generic collection used to store elements of the same data type.
 
 ### Example
 
@@ -252,42 +421,120 @@ class Program
 {
     static void Main()
     {
+        // Create List
+        // Collection_Class<DataType> Obj = new Collection_Class<DataType>();
+ 
         List<string> names = new List<string>();
 
+        // Add()
         names.Add("Daksh");
         names.Add("Raj");
         names.Add("Meet");
+        // Output: Daksh, Raj, Meet
 
-        foreach(string name in names)
+        // Display List
+        Console.WriteLine("Original List:");
+        foreach (string name in names)
         {
             Console.WriteLine(name);
         }
+        /*
+        Output:
+        Daksh
+        Raj
+        Meet
+        */
+
+        // Insert()
+        names.Insert(1, "Jay");
+        // Output: Daksh, Jay, Raj, Meet
+
+        // AddRange()
+        names.AddRange(new List<string> { "Krunal", "Dev" });
+        // Output: Daksh, Jay, Raj, Meet, Krunal, Dev
+
+        // Contains()
+        Console.WriteLine(names.Contains("Raj"));
+        // Output: True
+
+        // IndexOf()
+        Console.WriteLine(names.IndexOf("Meet"));
+        // Output: 3
+
+        // Count
+        Console.WriteLine(names.Count);
+        // Output: 6
+
+        // Remove()
+        names.Remove("Raj");
+        // Output: Daksh, Jay, Meet, Krunal, Dev
+
+        // RemoveAt()
+        names.RemoveAt(0);
+        // Output: Jay, Meet, Krunal, Dev
+
+        // Sort()
+        names.Sort();
+        /*
+        Output:
+        Dev
+        Jay
+        Krunal
+        Meet
+        */
+
+        // Reverse()
+        names.Reverse();
+        /*
+        Output:
+        Meet
+        Krunal
+        Jay
+        Dev
+        */
+
+        // Find()
+        string result = names.Find(x => x.StartsWith("J"));
+        Console.WriteLine(result);
+        // Output: Jay
+
+        // Clear()
+        names.Clear();
+
+        Console.WriteLine(names.Count);
+        // Output: 0
     }
 }
 ```
 
 ### Common Methods
+| Method       | Example                    | Purpose           |
+| ------------ | -------------------------- | ----------------- |
+| `Add()`      | `list.Add(10);`            | Add item          |
+| `Insert()`   | `list.Insert(1,"Rajkot");` | Insert item       |
+| `Remove()`   | `list.Remove(10);`         | Remove item       |
+| `RemoveAt()` | `list.RemoveAt(0);`        | Remove by index   |
+| `Contains()` | `list.Contains("Daksh")`   | Check item exists |
+| `IndexOf()`  | `list.IndexOf("Daksh")`    | Find index        |
+| `Count`      | `list.Count`               | Total items       |
+| `Reverse()`  | `list.Reverse()`           | Reverse list      |
+| `Clear()`    | `list.Clear()`             | Remove all items  |
 
-| Method     | Description         |
-| ---------- | ------------------- |
-| Add()      | Add Element         |
-| Remove()   | Remove Element      |
-| Insert()   | Insert Element      |
-| Contains() | Search Element      |
-| Clear()    | Remove All Elements |
-| Count      | Total Elements      |
+
 
 ---
 
 # Dictionary<TKey, TValue>
 
-## Definition
+Definition
 
-A dictionary stores data in key-value pairs.
+- A dictionary stores data in key-value pairs.
 
 ### Example
 
 ```csharp
+using System;
+using System.Collections.Generic;
 using System;
 using System.Collections.Generic;
 
@@ -295,30 +542,115 @@ class Program
 {
     static void Main()
     {
+        // Create Dictionary
         Dictionary<int, string> students =
             new Dictionary<int, string>();
 
+        // Add()
         students.Add(101, "Daksh");
         students.Add(102, "Raj");
+        students.Add(103, "Meet");
+        // Output:
+        // 101-Daksh
+        // 102-Raj
+        // 103-Meet
 
+        // Access Value using Key
         Console.WriteLine(students[101]);
+        // Output: Daksh
+
+        // Count
+        Console.WriteLine(students.Count);
+        // Output: 3
+
+        // ContainsKey()
+        Console.WriteLine(students.ContainsKey(102));
+        // Output: True
+
+        // ContainsValue()
+        Console.WriteLine(students.ContainsValue("Raj"));
+        // Output: True
+
+        // Update Value
+        students[102] = "Jay";
+        Console.WriteLine(students[102]);
+        // Output: Jay
+
+        // Remove()
+        students.Remove(103);
+        // Output: Removes Meet
+
+        // TryGetValue()
+        if (students.TryGetValue(101, out string name))
+        {
+            Console.WriteLine(name);
+        }
+        // Output: Daksh
+
+        // Display All Data
+        foreach (KeyValuePair<int, string> item in students)
+        {
+            Console.WriteLine(item.Key + " : " + item.Value);
+        }
+
+        /*
+        Output:
+        101 : Daksh
+        102 : Jay
+        */
+
+        // Keys
+        foreach (int key in students.Keys)
+        {
+            Console.WriteLine(key);
+        }
+
+        /*
+        Output:
+        101
+        102
+        */
+
+        // Values
+        foreach (string value in students.Values)
+        {
+            Console.WriteLine(value);
+        }
+
+        /*
+        Output:
+        Daksh
+        Jay
+        */
+
+        // Clear()
+        students.Clear();
+
+        Console.WriteLine(students.Count);
+        // Output: 0
     }
 }
 ```
 
-### Output
+| Method            | Example                           | Purpose            |
+| ----------------- | --------------------------------- | ------------------ |
+| `Add()`           | `students.Add(101,"Daksh")`       | Add key-value pair |
+| `Count`           | `students.Count`                  | Total records      |
+| `ContainsKey()`   | `students.ContainsKey(101)`       | Check key exists   |
+| `ContainsValue()` | `students.ContainsValue("Daksh")` | Check value exists |
+| `Remove()`        | `students.Remove(101)`            | Remove record      |
+| `TryGetValue()`   | `students.TryGetValue()`          | Get value safely   |
+| `Keys`            | `students.Keys`                   | Get all keys       |
+| `Values`          | `students.Values`                 | Get all values     |
+| `Clear()`         | `students.Clear()`                | Remove all records |
 
-```text
-Daksh
-```
 
 ---
 
 # Queue<T>
 
-## Definition
-
-Queue follows FIFO (First In First Out).
+Definition
+- Queue follows FIFO (First In First Out).
 
 ### Diagram
 
@@ -338,22 +670,79 @@ class Program
 {
     static void Main()
     {
+        // Create Queue
         Queue<string> queue = new Queue<string>();
 
+        // Enqueue()
         queue.Enqueue("A");
         queue.Enqueue("B");
         queue.Enqueue("C");
+        // Queue: A, B, C
 
+        // Count
+        Console.WriteLine(queue.Count);
+        // Output: 3
+
+        // Peek()
+        Console.WriteLine(queue.Peek());
+        // Output: A
+        // Returns first element without removing it
+
+        // Dequeue()
         Console.WriteLine(queue.Dequeue());
+        // Output: A
+        // Queue: B, C
+
+        // Contains()
+        Console.WriteLine(queue.Contains("B"));
+        // Output: True
+
+        // Display Queue
+        foreach (string item in queue)
+        {
+            Console.WriteLine(item);
+        }
+
+        /*
+        Output:
+        B
+        C
+        */
+
+        // ToArray()
+        string[] arr = queue.ToArray();
+
+        foreach (string item in arr)
+        {
+            Console.WriteLine(item);
+        }
+
+        /*
+        Output:
+        B
+        C
+        */
+
+        // Clear()
+        queue.Clear();
+
+        Console.WriteLine(queue.Count);
+        // Output: 0
     }
 }
 ```
+Important Queue Methods
 
-### Output
+| Method       | Example               | Purpose           |
+| ------------ | --------------------- | ----------------- |
+| `Enqueue()`  | `queue.Enqueue("A")`  | Add item          |
+| `Dequeue()`  | `queue.Dequeue()`     | Remove first item |
+| `Peek()`     | `queue.Peek()`        | View first item   |
+| `Contains()` | `queue.Contains("A")` | Check item exists |
+| `Count`      | `queue.Count`         | Total items       |
+| `ToArray()`  | `queue.ToArray()`     | Convert to array  |
+| `Clear()`    | `queue.Clear()`       | Remove all items  |
 
-```text
-A
-```
 
 ---
 
@@ -379,26 +768,85 @@ Top
 using System;
 using System.Collections.Generic;
 
+using System;
+using System.Collections.Generic;
+
 class Program
 {
     static void Main()
     {
+        // Create Stack
         Stack<int> stack = new Stack<int>();
 
+        // Push()
         stack.Push(10);
         stack.Push(20);
         stack.Push(30);
+        // Stack: 30, 20, 10 (Top to Bottom)
 
+        // Count
+        Console.WriteLine(stack.Count);
+        // Output: 3
+
+        // Peek()
+        Console.WriteLine(stack.Peek());
+        // Output: 30
+        // Returns top element without removing it
+
+        // Pop()
         Console.WriteLine(stack.Pop());
+        // Output: 30
+        // Stack: 20, 10
+
+        // Contains()
+        Console.WriteLine(stack.Contains(20));
+        // Output: True
+
+        // Display Stack
+        foreach (int item in stack)
+        {
+            Console.WriteLine(item);
+        }
+
+        /*
+        Output:
+        20
+        10
+        */
+
+        // ToArray()
+        int[] arr = stack.ToArray();
+
+        foreach (int item in arr)
+        {
+            Console.WriteLine(item);
+        }
+
+        /*
+        Output:
+        20
+        10
+        */
+
+        // Clear()
+        stack.Clear();
+
+        Console.WriteLine(stack.Count);
+        // Output: 0
     }
 }
 ```
+Important Stack Methods
+| Method       | Example              | Purpose           |
+| ------------ | -------------------- | ----------------- |
+| `Push()`     | `stack.Push(10)`     | Add item to top   |
+| `Pop()`      | `stack.Pop()`        | Remove top item   |
+| `Peek()`     | `stack.Peek()`       | View top item     |
+| `Contains()` | `stack.Contains(20)` | Check item exists |
+| `Count`      | `stack.Count`        | Total items       |
+| `ToArray()`  | `stack.ToArray()`    | Convert to array  |
+| `Clear()`    | `stack.Clear()`      | Remove all items  |
 
-### Output
-
-```text
-30
-```
 
 ---
 
@@ -422,21 +870,99 @@ class Program
 {
     static void Main()
     {
+        // Create Hashtable
         Hashtable ht = new Hashtable();
 
+        // Add()
         ht.Add(1, "Daksh");
         ht.Add(2, "Raj");
+        ht.Add(3, "Meet");
+        // Output:
+        // 1-Daksh
+        // 2-Raj
+        // 3-Meet
 
+        // Access Value
         Console.WriteLine(ht[1]);
+        // Output: Daksh
+
+        // Count
+        Console.WriteLine(ht.Count);
+        // Output: 3
+
+        // ContainsKey()
+        Console.WriteLine(ht.ContainsKey(2));
+        // Output: True
+
+        // ContainsValue()
+        Console.WriteLine(ht.ContainsValue("Raj"));
+        // Output: True
+
+        // Update Value
+        ht[2] = "Jay";
+        Console.WriteLine(ht[2]);
+        // Output: Jay
+
+        // Remove()
+        ht.Remove(3);
+        // Removes key 3
+
+        // Display Hashtable
+        foreach (DictionaryEntry item in ht)
+        {
+            Console.WriteLine(item.Key + " : " + item.Value);
+        }
+
+        /*
+        Output:
+        1 : Daksh
+        2 : Jay
+        */
+
+        // Keys
+        foreach (var key in ht.Keys)
+        {
+            Console.WriteLine(key);
+        }
+
+        /*
+        Output:
+        1
+        2
+        */
+
+        // Values
+        foreach (var value in ht.Values)
+        {
+            Console.WriteLine(value);
+        }
+
+        /*
+        Output:
+        Daksh
+        Jay
+        */
+
+        // Clear()
+        ht.Clear();
+
+        Console.WriteLine(ht.Count);
+        // Output: 0
     }
 }
 ```
+Important Hashtable Methods
+| Method            | Example                     | Purpose            |
+| ----------------- | --------------------------- | ------------------ |
+| `Add()`           | `ht.Add(1,"Daksh")`         | Add key-value pair |
+| `Remove()`        | `ht.Remove(1)`              | Remove item        |
+| `ContainsKey()`   | `ht.ContainsKey(1)`         | Check key exists   |
+| `ContainsValue()` | `ht.ContainsValue("Daksh")` | Check value exists |
+| `Count`           | `ht.Count`                  | Total records      |
+| `Keys`            | `ht.Keys`                   | Get all keys       |
+| `Values`          | `ht.Values`                 | Get all values     |
+| `Clear()`         | `ht.Clear()`                | Remove all items   |
 
-### Output
-
-```text
-Daksh
-```
 
 ---
 
@@ -507,7 +1033,7 @@ Daksh
 
 ---
 
-# LAB - 1. Develop a menu-driven console application to manage student records using List<Student>. Implement Add, Display, Search, Update, and Delete functionalities.
+#### Task - 1. Develop a menu-driven console application to manage student records using List<Student>. Implement Add, Display, Search, Update, and Delete functionalities.
 
 
 ## Program.cs
@@ -691,7 +1217,8 @@ namespace ConsoleApp1
 
 ```
 ---
-# LAB - 3 Create a Student Grade Book using Dictionary<int, Student> where each student record contains subject-wise marks. Implement features to add/update student details, calculate percentage, and display reports
+#### Task - 3 Create a Student Grade Book using Dictionary<int, Student> where each student record contains subject-wise marks. Implement features to add/update student details, calculate percentage, and display reports
+
 
 ### Program.cs
 ``` csharp
@@ -872,7 +1399,10 @@ namespace ConsoleApp1
 
 ```
 ---
-# LAB - 5 Implement a Role-Based Permission System using HashSet<string> to manage user permissions. Support role assignment, permission checking, and merging of permissions.
+
+
+---
+#### Task - 5 Implement a Role-Based Permission System using HashSet<string> to manage user permissions. Support role assignment, permission checking, and merging of permissions.
 
 
 
@@ -1087,10 +1617,10 @@ class Program
 ```
 
 # LAB - 6  - Collection Classes
-
-# 1. Develop a menu-driven console application to manage student records using List<Student>. Implement Add, Display, Search, Update, and Delete functionalities. 
-# 2. Implement a Shopping Cart system using List<CartItem> that supports adding items, removing items, viewing cart details, and calculating total amount with discount.
-# 3. Create a Student Grade Book using Dictionary<int, Student> where each student record contains subject-wise marks. Implement features to add/update student details, calculate percentage, and display reports.
-# 4. Develop a Product Catalog and Inventory Management System using Dictionary<string, Product> with features for adding products, updating stock, searching, and generating bills.
-# 5. Implement a Role-Based Permission System using HashSet<string> to manage user permissions. Support role assignment, permission checking, and merging of permissions.
-# 6. Develop core features for a Social Networking application using HashSet<T> to manage user interests and friends. Implement mutual friends finding, interest-based suggestions, and duplicate tag removal.
+#### 
+#### 1. Develop a menu-driven console application to manage student records using List<Student>. Implement Add, Display, Search, Update, and Delete functionalities. 
+#### 2. Implement a Shopping Cart system using List<CartItem> that supports adding items, removing items, viewing cart details, and calculating the total amount with a discount.
+#### 3. Create a Student Grade Book using Dictionary<int, Student> where each student record contains subject-wise marks. Implement features to add/update student details, calculate percentages, and display reports.
+#### 4. Develop a Product Catalog and Inventory Management System using Dictionary<string, Product> with features for adding products, updating stock, searching, and generating bills.
+#### 5. Implement a Role-Based Permission System using HashSet<string> to manage user permissions. Support role assignment, permission checking, and merging of permissions.
+#### 6. Develop core features for a Social Networking application using HashSet<T> to manage user interests and friends. Implement mutual friends finding, interest-based suggestions, and duplicate tag removal.
