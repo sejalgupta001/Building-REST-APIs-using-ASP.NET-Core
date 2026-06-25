@@ -304,7 +304,7 @@ Definition:
 
 ### or
 
-Boxing is the implicit conversion of a value type to an object type. The value is copied from the stack to the heap
+- Boxing is the implicit conversion of a value type to an object type. The value is copied from the stack to the heap
 
 ``` csharp
 using System;
