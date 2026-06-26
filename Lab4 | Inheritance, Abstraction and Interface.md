@@ -184,7 +184,8 @@ Student Gets DisplayPerson()
 
 
 
-<img width="1091" height="567" alt="image" src="https://files.catbox.moe/quv89e.png" />
+<img width="1320" height="625" alt="image" src="https://github.com/user-attachments/assets/4ec1e384-4558-415c-8c40-4ebdbad95e75" />
+
 
 
 ---
@@ -498,7 +499,7 @@ Because of this, C# prevents Multiple and Hybrid Inheritance through classes.
 ## Create Interface
 
 ```c#
-public interface IPerson
+public interface Person
 {
     void ShowRole();
 }
@@ -510,7 +511,7 @@ public interface IPerson
 
 ```c#
 // Child class
-public class Student : IPerson
+public class Student : Person
 {
     public void ShowRole()
     {
@@ -519,7 +520,7 @@ public class Student : IPerson
 }
 
 // Child class
-public class Faculty : IPerson
+public class Faculty : Person
 {
     public void ShowRole()
     {
@@ -544,7 +545,7 @@ In the example above, both `Student` and `Faculty` must implement the `ShowRole(
 ## Interface Flow
 
 ```text
-IPerson
+Person
    ↓
 Defines ShowRole()
    ↓
@@ -575,17 +576,17 @@ I am a Faculty
 ### Example
 
 ```c#
-public interface IStudent
+public interface Student
 {
     void Study();
 }
 
-public interface IFaculty
+public interface Faculty
 {
     void Teach();
 }
 
-public class Person : IStudent, IFaculty
+public class Person : Student, Faculty
 {
     public void Study()
     {
@@ -612,17 +613,18 @@ public class Person : IStudent, IFaculty
 ### Example
 
 When a single class needs to inherit behavior from multiple sources (like both Student and Faculty characteristics), we use multiple interfaces:
-public interface IStudent
+```c#
+public interface Student
 {
     void Study();
 }
 
-public interface IFaculty
+public interface Faculty
 {
     void Teach();
 }
 
-public class Person : IStudent, IFaculty
+public class Person : Student, Faculty
 {
     public void Study()
     {
@@ -638,8 +640,8 @@ public class Person : IStudent, IFaculty
 
 In this example:
 - `Person` implements multiple interfaces.
-- `IStudent` defines `Study()`.
-- `IFaculty` defines `Teach()`.
+- `Student` defines `Study()`.
+- `Faculty` defines `Teach()`.
 - `Person` provides implementations for both methods.
 - This achieves Hybrid Inheritance behavior without the Diamond Problem.
 - Ambiguity is avoided because interfaces don't contain conflicting implementations. 
@@ -661,7 +663,7 @@ In this example:
           ▼                                      ▼
 
     +-------------+                     +-------------+
-    |  IStudent   |                     |   IFaculty  |
+    |  Student   |                     |   Faculty  |
     +-------------+                     +-------------+
     | Study()     |                     | Teach()     |
     +-------------+                     +-------------+
