@@ -1,4 +1,4 @@
-# Lab No. 02 | Loops, Strings & Arrays in C #
+# Lab No. 02 | Loops, Strings & Arrays in C# #
 
 ## Objective
 
@@ -47,14 +47,6 @@ We will implement 8 tasks covering character case toggling, substring checks, ar
 | `foreach` | You want to iterate over every element in a collection |
 | `while` | You iterate until a condition becomes false |
 
-### Strings in C #
-
-Strings in C# are **immutable** — you cannot modify a character directly using `str[i] = 'x'`. You must convert to a `char[]`, modify it, then create a new string.
-
-```text
-string  →  ToCharArray()  →  char[]  →  modify  →  new string(chars)
-```
-
 ### Arrays
 
 ```text
@@ -71,6 +63,10 @@ Traversal:     for loop or foreach loop
 ## What Is a Console Application?
 
 A **console application** is a program that runs in a text-based window called the console or terminal. It does not use buttons, forms, or graphical screens. Instead, it takes input from the keyboard and displays output as text.
+
+- Console applications do not have web output (no browser, no HTML, no web pages).
+- They run entirely in the terminal window.
+- All input and output happens through text only.
 
 In C#, console applications are useful for learning basic programming because they make it easy to practice input, output, conditions, loops, strings, arrays, and methods.
 
@@ -115,7 +111,10 @@ Enter your name:
 
 ### `Console.ReadLine()`
 
-`Console.ReadLine()` reads a complete line typed by the user and stores it as a string.
+`Console.ReadLine()` reads a complete line typed by the user and returns it as a `string`.
+
+- Return type: `string`
+- Returns `null` if the input stream is closed
 
 ```csharp
 Console.Write("Enter your name: ");
@@ -132,11 +131,63 @@ Hello, Dhairya
 
 ### `Console.ReadKey()`
 
-`Console.ReadKey()` reads a single keypress from the keyboard. In this lab, we use `Console.ReadKey().KeyChar` to read one character.
+`Console.ReadKey()` reads a single keypress from the keyboard and returns a `ConsoleKeyInfo` object.
+
+- Return type: `ConsoleKeyInfo`
+- Properties available: `.Key` (ConsoleKey enum), `.KeyChar` (char), `.Modifiers` (ConsoleModifiers)
 
 ```csharp
+// Reading just the character
 char ch = Console.ReadKey().KeyChar;
+
+// Reading the key as an enum
+ConsoleKey key = Console.ReadKey().Key;
+
+// Reading modifiers (Ctrl, Alt, Shift)
+ConsoleModifiers mods = Console.ReadKey().Modifiers;
 ```
+
+### Other Console Input Methods
+
+| Method | Return Type | Description |
+|---|---|---|
+| `Console.ReadLine()` | `string` | Reads a full line of text |
+| `Console.ReadKey()` | `ConsoleKeyInfo` | Reads a single keypress |
+| `Console.ReadKey(true)` | `ConsoleKeyInfo` | Reads keypress without displaying it |
+| `Console.Read()` | `int` | Reads next character as int (-1 if none) |
+| `Console.Peek()` | `int` | Reads next character without removing it |
+
+### Top-Level Statements
+
+In modern C# (C# 9 and later), you can write code without creating a class or a `Main` method. This is called **top-level statements**.
+
+- No need to write `class Program` or `static void Main()`.
+- The code runs directly from top to bottom.
+- The compiler automatically wraps it in a class and Main method behind the scenes.
+
+```csharp
+// Top-level statement style (no class, no Main)
+Console.Write("Enter your name: ");
+string name = Console.ReadLine();
+Console.WriteLine("Hello, " + name);
+```
+
+```csharp
+// Traditional style (with class and Main)
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
+        Console.WriteLine("Hello, " + name);
+    }
+}
+```
+
+Both produce the same output. Top-level statements are simpler and used for small programs. For larger projects, the traditional style with classes and methods is preferred.
+
+---
 
 ## Steps to Create a Console Application
 
@@ -163,7 +214,7 @@ Lab02
 
 ---
 
-# Lab Tasks
+# Lab Tasks:
 
 ---
 
@@ -640,24 +691,20 @@ Character 'z' not found in the string.
 
 ## section B
 
-6. Find the sum of all elements in an array.
-2. Count odd and even numbers in an array.
-3. Write a program which find out the first and last occurrence of a character and then replace that character with ‘D’.
+7. Find the sum of all elements in an array.
+8. Count odd and even numbers in an array.
+9. Write a program which find out the first and last occurrence of a character and then replace that character with ‘D’.
 
----
+# Concepts Summary
 
-# Extra Task
+| Task | Key Concept | Key Method / Keyword |
+|---|---|---|
+| 1 | Character case toggle | `char.IsUpper()`, `char.ToLower()` |
+| 2 | String iteration, case toggle | `foreach`, `char.IsLower()` |
+| 3 | Substring check | `string.Contains()`, `IndexOf()` |
+| 4 | Second largest in array | `int.MinValue`, single-pass tracking |
+| 5 | Calculator logic | `else if` ladder, `switch` |
+| 6 | Array sum | `+=` accumulator |
+| 7 | Odd/even count | `%` modulus operator |
+| 8 | Character replace in string | `IndexOf()`, `LastIndexOf()`, `ToCharArray()` |
 
-Build a **Menu-Driven Array Manager** console application:
-
-```text
-1. Input Array
-2. Display Sum
-3. Count Odd and Even
-4. Find Second Largest
-5. Exit
-```
-
-Use a `while` loop with a `switch` statement to keep the menu running until the user selects Exit.
-
----
