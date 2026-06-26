@@ -184,7 +184,8 @@ Student Gets DisplayPerson()
 
 
 
-<img width="1320" height="625" alt="image" src="https://github.com/user-attachments/assets/4ec1e384-4558-415c-8c40-4ebdbad95e75" />
+<img width="815" height="548" alt="image" src="https://github.com/user-attachments/assets/498d8fe0-e15c-4e85-bede-73da6af2a2e8" />
+
 
 
 
@@ -679,7 +680,8 @@ In this example:
 - **Cannot create objects of abstract class directly** — An abstract class contains one or more abstract methods with no implementation.
 - **Why?** It's incomplete. You cannot instantiate an incomplete blueprint. You must create a derived class that provides actual implementation for all abstract methods.
 
-<img width="885" height="274" alt="image" src="https://github.com/user-attachments/assets/7ce3751e-ff08-463e-b8ab-8c1f3df76ea3" />
+<img width="624" height="345" alt="image" src="https://github.com/user-attachments/assets/cc43da6f-376c-42d7-8377-7aa29e28ee44" />
+
 
 
 Example:
@@ -708,7 +710,8 @@ You don't know:
 ✖ Fuel Injection Logic
 ```
 
-<img width="737" height="458" alt="image" src="https://github.com/user-attachments/assets/5794738b-22f4-42a9-b10b-73c5b6bce8c2" />
+<img width="913" height="507" alt="image" src="https://github.com/user-attachments/assets/605934c4-609c-41d9-ac60-2630051d1c83" />
+
 
 ## implementation:
 
@@ -790,6 +793,121 @@ Provides Logic
 | Multiple Support    | No         | No                  | Yes             |
 
 ---
+
+
+## Non-Abstract Method in C#
+
+A **non-abstract method** is a method that already contains its implementation (body). Since the logic is already written, any object of the class can directly use the method without needing to override it.
+
+### Example
+
+```csharp
+using System;
+
+abstract class Animal // an abstract class can contain both the method non abstract and abstract method lets have an example 
+{
+    // Non-abstract method
+    public void Sleep()
+    {
+        Console.WriteLine("Every animal needs sleep.");
+    }
+
+    // Abstract method
+    public abstract void MakeSound();
+}
+
+class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Dog barks.");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Dog dog = new Dog();
+
+        dog.Sleep();       // Calls the inherited non-abstract method
+        dog.MakeSound();   // Calls the overridden abstract method
+    }
+}
+```
+
+### Output
+
+```text
+Every animal needs sleep.
+Dog barks.
+```
+
+---
+
+## Explanation
+
+### What is happening?
+
+The `Animal` class contains:
+
+- A **non-abstract method** named `Sleep()`.
+- An **abstract method** named `MakeSound()`.
+
+The `Dog` class inherits from `Animal`.
+
+Since `Sleep()` already has an implementation, the `Dog` class automatically inherits it and can use it directly without writing the method again.
+
+However, `MakeSound()` is abstract, so the `Dog` class **must** provide its own implementation using the `override` keyword.
+
+---
+
+## Why use Non-Abstract Methods?
+
+Non-abstract methods are useful when the parent class already knows how a task should be performed and the same behavior can be shared by all child classes.
+
+For example:
+
+- Every animal sleeps.
+- Every employee receives a salary.
+- Every vehicle can start.
+- Every student has a registration number.
+
+Instead of writing the same code in every child class, we write it once in the parent class and allow all child classes to inherit it.
+
+---
+
+## Key Points
+
+- A non-abstract method **contains a method body**.
+- It can be called directly by objects of derived classes.
+- Overriding is **optional**, not mandatory.
+- It promotes **code reuse** by allowing common functionality to be inherited.
+
+---
+
+## Mental Model
+
+```text
+             Animal (Abstract Class)
+             ┌─────────────────────┐
+             │ Sleep()             │  ← Already implemented
+             │ MakeSound()         │  ← Abstract
+             └─────────┬───────────┘
+                       │
+                       ▼
+                  Dog (Child Class)
+             ┌─────────────────────┐
+             │ Inherits Sleep()    │
+             │ Implements          │
+             │ MakeSound()         │
+             └─────────────────────┘
+```
+
+### Rule to Remember
+
+> **A non-abstract method provides a ready-made implementation that child classes inherit and use directly, whereas an abstract method only defines what should be done and requires child classes to implement how it is done.**
+
 
 ## Demo 1 (Inheritance)
 
