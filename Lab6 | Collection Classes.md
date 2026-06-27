@@ -1052,15 +1052,22 @@ namespace ConsoleApp1
         static List<Student> students = new List<Student>();
         static void Main(string[] args)
         {
-            //List<T> list = new List<T>();
-            //students.Add(new Student(1, "Alice", 20));
-            //students.Add(new Student(2, "Bob", 22));
-            //students.Add(new Student(3, "Charlie", 21));
+            // Syntax: CollectionClasses<DataType> variableName = new CollectionClasses<DataType>();
 
-            //foreach (var student in students)
-            //{
-            //    Console.WriteLine($"ID: {student.id}, Name: {student.name}, Age: {student.age}");
-            //}
+           // Initialize a new list to store Student objects
+            // List<Student> students = new List<Student>();
+
+            // Populate the list with sample student records (ID, Name, Age)
+            // students.Add(new Student(1, "Alice", 20));
+            // students.Add(new Student(2, "Bob", 22));
+            // students.Add(new Student(3, "Charlie", 21));
+
+            // Iterate through the collection and display each student's properties
+            // foreach (var student in students)
+            // {
+            //     Console.WriteLine($"ID: {student.id}, Name: {student.name}, Age: {student.age}");
+            // }
+
             int choice = 0;
             do
             {
