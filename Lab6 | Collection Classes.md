@@ -1289,24 +1289,27 @@ namespace ConsoleApp1
         {
             Console.Write("Enter Student ID: ");
             int id = Convert.ToInt32(Console.ReadLine());
+
             if (students.ContainsKey(id))
             {
                 Console.WriteLine("Student ID already exists!");
                 return;
             }
+
             Console.Write("Enter Name: ");
             string name = Console.ReadLine();
 
-            Console.Write("Enter Maths Marks: ");
-            int maths = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Math Marks: ");
+            int math = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Enter Science Marks: ");
-            int science = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Physics Marks: ");
+            int physics = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Enter English Marks: ");
-            int english = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Chemistry Marks: ");
+            int chemistry = Convert.ToInt32(Console.ReadLine());
 
-            students.Add(id, new Student(id, name, maths, science, english));
+            students.Add(id, new Student(id, name, math, physics, chemistry));
+
             Console.WriteLine("Student Added Successfully!");
         }
 
@@ -1317,13 +1320,14 @@ namespace ConsoleApp1
             int id = Convert.ToInt32(Console.ReadLine());
             if (students.ContainsKey(id))
             {
-                Console.Write("Enter New Maths Marks: ");
+                Console.Write("Enter New Math Marks: ");
                 students[id].Math = Convert.ToInt32(Console.ReadLine());
+
                 Console.Write("Enter New Physics Marks: ");
                 students[id].Physics = Convert.ToInt32(Console.ReadLine());
+
                 Console.Write("Enter New Chemistry Marks: ");
                 students[id].Chemistry = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Marks Updated Successfully!");
             }
             else
             {
@@ -1340,10 +1344,10 @@ namespace ConsoleApp1
                 Console.WriteLine($"Name: {students[id].Name}");
                 Console.WriteLine($"Maths: {students[id].Math}");
                 Console.WriteLine($"Physics: {students[id].Physics}");
-                Console.WriteLine($"Chemistry: {students[id].Chemistry}"); 
+                Console.WriteLine($"Chemistry: {students[id].Chemistry}");
                 Console.WriteLine($"Total: {students[id].Math + students[id].Physics + students[id].Chemistry}");
                 Console.WriteLine($"Average: {(students[id].Math + students[id].Physics + students[id].Chemistry) / 3}");
-               
+
             }
             else
             {
