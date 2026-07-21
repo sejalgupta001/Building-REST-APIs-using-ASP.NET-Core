@@ -1,17 +1,7 @@
-# Lab 10: CRUD Using EF Core – I
+# Lab 11: CRUD Using EF Core – I
 ### Users & Roles Module
 
 **Goal:** Implement simple CRUD (Create, Read, Update, Delete) operations for Users and Roles modules using Entity Framework Core.
-
----
-
-## Table of Contents
-1. [What is EF Core and Why we use it?](#1-what-is-ef-core-and-why-we-use-it)
-2. [What is CRUD?](#2-what-is-crud)
-3. [Understanding the Architecture](#3-understanding-the-architecture)
-4. [Prerequisites](#4-prerequisites)
-5. [Step 1: Role Controller](#step-1-role-controller)
-6. [Step 2: User Controller](#step-2-user-controller)
 
 ---
 
@@ -139,6 +129,34 @@ public class AppDbContext : DbContext
     }
 }
 ```
+
+---
+
+## 5. Key Concepts to Understand
+
+Before writing our controllers, here are two critical concepts we will be using:
+
+### 1. Dependency Injection (DI)
+
+In our controllers, `AppDbContext` is passed directly into the constructor:
+```csharp
+public RolesController(AppDbContext context) { ... }
+```
+- **The Problem:** Creating a new database connection inside the controller (`new AppDbContext()`) is inefficient and hard to test.
+- **The Solution (DI):** ASP.NET Core automatically provides (or "injects") a pre-configured database connection when the controller is created.
+- **Why it matters:** It centralizes configuration in `Program.cs` and reuses connections effectively.
+
+### 2. Asynchronous Programming (`async`, `await`, `Task`)
+
+Database queries take time. If we wait for them synchronously, the server gets blocked from serving other users. In ASP.NET Core, it is a best practice to make database calls asynchronous.
+
+- **`async` / `await`**
+  These keywords allow the server to handle other requests while waiting for the database to respond. `await` safely pauses the current method until the database finishes its job.
+
+- **`Task` vs `Task<T>`**
+  A **Task** represents an ongoing asynchronous operation that promises to complete and return a value in the future. Instead of returning normal types immediately, async methods return a `Task`:
+  - `Task`: Used when the method will eventually finish but returns nothing (like `void`).
+  - `Task<IActionResult>`: Used when the method will eventually finish and yield an `IActionResult` in the future (like an HTTP `200 OK` or `404 Not Found`).
 
 ---
 
@@ -296,3 +314,11 @@ public class UsersController : ControllerBase
     }
 }
 ```
+
+---
+
+## Lab Tasks
+
+**A.** Implement Create, Read, Update, and Delete operations for Users, Roles and Permission modules using DbContext. 
+
+**B.** Implement CRUD operations for Projects, Tasks and Project-Allocation modules using DbContext. 
