@@ -239,6 +239,27 @@ public class RolesController : ControllerBase
 
 ---
 
+# Output
+
+## Role Module
+
+### Get All Roles
+![Get All Roles](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/Role-GetAll_zaphbm.png)
+
+### Get Role By ID
+![Get Role By ID](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/Role-GetById_kveord.png)
+
+### Create Role
+![Create Role](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827959/Role-Add_twfrm4.png)
+
+### Update Role
+![Update Role](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/Role-Update_ddj8u8.png)
+
+### Delete Role
+![Delete Role](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/Role-Delete_xsnmib.png)
+
+---
+
 ## Step 2: User Controller
 
 ### File: Controllers/UsersController.cs
@@ -314,6 +335,27 @@ public class UsersController : ControllerBase
     }
 }
 ```
+
+---
+
+# Output
+
+## User Module
+
+### Get All Users
+![Get All Users](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827961/User-GetAll_qy82zv.png)
+
+### Get User By ID
+![Get User By ID](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/User-GetById_e9iosv.png)
+
+### Create User
+![Create User](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/User-Add_duchoq.png)
+
+### Update User
+![Update User](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827961/User-Update_saqsis.png)
+
+### Delete User
+![Delete User](https://res.cloudinary.com/dpdxoxtog/image/upload/v1784827960/User-Delete_syjxlh.png)
 
 ---
 
