@@ -158,6 +158,96 @@ Database queries take time. If we wait for them synchronously, the server gets b
   - `Task`: Used when the method will eventually finish but returns nothing (like `void`).
   - `Task<IActionResult>`: Used when the method will eventually finish and yield an `IActionResult` in the future (like an HTTP `200 OK` or `404 Not Found`).
 
+### 3. Eager Loading with `.Include()`
+
+#### Why is it needed?
+
+Look at the `User` model:
+
+```csharp
+public class User
+{
+    public int UserId { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+
+    public int RoleId { get; set; }      // Foreign Key
+    public Role Role { get; set; }       // Navigation Property
+}
+```
+
+`RoleId` is stored in the `Users` table. But the actual **Role details** (like `RoleName`) live in the separate `Roles` table. When you query `Users`, EF Core only selects from the `Users` table — it does **not** automatically join the `Roles` table.
+
+Without `.Include()`, the `Role` property will be `null`. This means:
+
+```csharp
+var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == 1);
+Console.WriteLine(user.Role.RoleName); // ❌ NullReferenceException!
+```
+
+The error happens because EF Core never fetched the related `Role` row from the database.
+
+#### What does `.Include()` do?
+
+`.Include()` tells EF Core to generate a **SQL JOIN** so it fetches related data in the same query.
+
+```csharp
+var user = await _context.Users
+    .Include(u => u.Role)
+    .FirstOrDefaultAsync(u => u.Id == 1);
+
+Console.WriteLine(user.Role.RoleName); // ✅ Works — "Admin"
+```
+
+The generated SQL becomes something like:
+
+```sql
+SELECT u.*, r.*
+FROM Users u
+LEFT JOIN Roles r ON u.RoleId = r.Id
+WHERE u.Id = 1
+```
+
+#### Without `.Include()` — Role is null
+
+```csharp
+var users = await _context.Users.ToListAsync();
+// user.Role == null  ← EF Core didn't load it
+```
+
+#### With `.Include()` — Role is populated
+
+```csharp
+var users = await _context.Users
+    .Include(u => u.Role)
+    .ToListAsync();
+// user.Role.RoleName now works
+```
+
+#### Nested includes with `.ThenInclude()`
+
+For deeper relationships (e.g., User → Role → RolePermissions → Permission):
+
+```csharp
+var users = await _context.Users
+    .Include(u => u.Role)
+        .ThenInclude(r => r.RolePermissions)
+            .ThenInclude(rp => rp.Permission)
+    .ToListAsync();
+```
+
+**Important:** `FindAsync()` does **not** support `.Include()`. If you need to load related data for a single record, use `Where()` + `FirstOrDefaultAsync()` instead:
+
+```csharp
+// ❌ FindAsync — cannot include related data
+var user = await _context.Users.FindAsync(id);
+
+// ✅ FirstOrDefaultAsync — works with Include
+var user = await _context.Users
+    .Include(u => u.Role)
+    .FirstOrDefaultAsync(u => u.Id == id);
+```
+
 ---
 
 ## Step 1: Role Controller
@@ -282,14 +372,18 @@ public class UsersController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {
-        var users = await _context.Users.ToListAsync();
+        var users = await _context.Users
+            .Include(u => u.Role)
+            .ToListAsync();
         return Ok(users);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
     {
-        var user = await _context.Users.FindAsync(id);
+        var user = await _context.Users
+            .Include(u => u.Role)
+            .FirstOrDefaultAsync(u => u.UserId == id);
 
         if (user == null)
             return NotFound();
