@@ -1,4 +1,4 @@
-# Lab 11: CRUD Using EF Core – I
+# Lab 10: CRUD Using EF Core – I
 ### Users & Roles Module
 
 **Goal:** Implement simple CRUD (Create, Read, Update, Delete) operations for Users and Roles modules using Entity Framework Core.
