@@ -133,9 +133,25 @@ public class StudentController : ControllerBase
         var result = await _validator.ValidateAsync(dto);
 
         if (!result.IsValid)
-        {
-            return BadRequest(result.Errors.Select(x=>x.ErrorMessage));
-        }
+ {
+     //return BadRequest(result.Errors.Select(x => x.ErrorMessage));
+     return BadRequest(new ApiResponse<Object>
+     {
+         Success = false,
+         Message = "Validation Failed",
+         Data = null,
+         Errors = result.Errors.Select(x => x.ErrorMessage).ToList()
+         
+         //Errors = result.Errors
+         //.Select(x => $"{x.PropertyName}: {x.ErrorMessage}")
+         //.ToList()
+
+         //Errors = result.Errors
+         //.GroupBy(x => x.PropertyName)
+         //.Select(x => $"{x.Key}: {string.Join(", ", x.Select(e => e.ErrorMessage))}")
+         //.ToList()
+     });
+ }
         //Logic to Add Record in DB
 
         return Ok("Student Created Successfully");
