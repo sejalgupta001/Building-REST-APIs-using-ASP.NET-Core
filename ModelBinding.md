@@ -158,7 +158,8 @@ public async Task<IActionResult> GetProjects([FromHeader(Name = "X-User-Id")] st
     return Ok();
 }
 ```
-<img width="1390" height="606" alt="image" src="https://github.com/user-attachments/assets/21d9cbc6-f9bf-4c8c-ad60-c680fe492a4a" />
+
+<img width="1390" height="606" alt="new4" src="https://github.com/user-attachments/assets/acd837ab-263f-46b3-86e3-a05adc9b69c7" />
 
 
 This is useful for passing tokens, user IDs, or other metadata through headers.
