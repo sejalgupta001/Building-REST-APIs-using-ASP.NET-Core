@@ -1,38 +1,41 @@
 new 
 ```c#
- builder.Services.AddOpenApi(options =>
- {
-     options.AddDocumentTransformer(
-         (document, context, cancellationToken) =>
-         {
-             document.Components ??= new();
+   builder.Services.AddOpenApi(options =>
+            {
+                options.AddDocumentTransformer((document, context, cancellationToken) =>
+                {
+                    // 1. Ensure Components object exists
+                    document.Components ??= new OpenApiComponents();
 
-             document.Components.SecuritySchemes
-                 ??= new Dictionary<
-                     string,
-                     Microsoft.OpenApi.Models.OpenApiSecurityScheme>();
+                    // 2. Ensure SecuritySchemes dictionary exists (Fixes NullReferenceException)
+                    document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
 
-             document.Components.SecuritySchemes["Bearer"] =
-                 new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                 {
-                     Type =
-                         Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+                    // 3. Define Security Scheme
+                    var securityScheme = new OpenApiSecurityScheme
+                    {
+                        Type = SecuritySchemeType.Http,
+                        Scheme = "bearer",
+                        BearerFormat = "JWT",
+                        In = ParameterLocation.Header,
+                        Description = "Enter your JWT token here (no need to type 'Bearer' prefix)"
+                    };
 
-                     Scheme = "bearer",
+                    // 4. Safely set key
+                    document.Components.SecuritySchemes["Bearer"] = securityScheme;
 
-                     BearerFormat = "JWT",
+                    // 5. Attach requirement globally
+                    document.Security ??= new List<OpenApiSecurityRequirement>();
 
-                     In =
-                         Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    var securityRequirement = new OpenApiSecurityRequirement
+                    {
+                        [new OpenApiSecuritySchemeReference("Bearer", document)] = new List<string>()
+                    };
 
-                     Description =
-                         "Enter your JWT token here (no need to type 'Bearer' prefix)"
-                 };
+                    document.Security.Add(securityRequirement);
 
-             return Task.CompletedTask;
-         });
- });
-```
+                    return Task.CompletedTask;
+                });
+            });```
 
 
 # JWT Authentication in ASP.NET Core Web API
