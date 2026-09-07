@@ -1,3 +1,40 @@
+new 
+```c#
+ builder.Services.AddOpenApi(options =>
+ {
+     options.AddDocumentTransformer(
+         (document, context, cancellationToken) =>
+         {
+             document.Components ??= new();
+
+             document.Components.SecuritySchemes
+                 ??= new Dictionary<
+                     string,
+                     Microsoft.OpenApi.Models.OpenApiSecurityScheme>();
+
+             document.Components.SecuritySchemes["Bearer"] =
+                 new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                 {
+                     Type =
+                         Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+
+                     Scheme = "bearer",
+
+                     BearerFormat = "JWT",
+
+                     In =
+                         Microsoft.OpenApi.Models.ParameterLocation.Header,
+
+                     Description =
+                         "Enter your JWT token here (no need to type 'Bearer' prefix)"
+                 };
+
+             return Task.CompletedTask;
+         });
+ });
+```
+
+
 # JWT Authentication in ASP.NET Core Web API
 
 ## What is JWT?
