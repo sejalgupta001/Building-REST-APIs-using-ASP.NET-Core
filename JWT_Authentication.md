@@ -23,7 +23,8 @@ Header Payload Signature
 
 ```
 
-![Token Structure](./Payload.png)
+<img width="1100" height="507" alt="image" src="https://github.com/user-attachments/assets/08ea973c-9bc3-4f6c-9b1d-6f4442aa5abb" />
+
 
 ### 🔄 Which Part Changes vs Stays the Same?
 
@@ -304,15 +305,17 @@ app.MapControllers();
 
 **1️⃣ Generate the token — `POST /api/User/login`**
 
-![Token Generation](./TokenGeneration.png)
+<img width="1760" height="831" alt="image" src="https://github.com/user-attachments/assets/d04c706f-9ac1-428e-9d9c-e1cf7b95c9c9" />
 
 **2️⃣ Call the protected endpoint with the correct token**
 
-![Correct Token Success](./CorrectToken.png)
+<img width="1768" height="852" alt="image" src="https://github.com/user-attachments/assets/ff864855-ebeb-45ce-85d7-db69a7aa4961" />
+
 
 **3️⃣ Call the protected endpoint with a wrong/missing token**
 
-![Wrong Token 401](./TokenIsWrong.png)
+<img width="1749" height="846" alt="image" src="https://github.com/user-attachments/assets/40800cb0-872c-495b-852d-ea08f02e29cd" />
+
 
 ```bash
 dotnet run
