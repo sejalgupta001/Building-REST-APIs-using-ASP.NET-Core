@@ -1,43 +1,3 @@
-new 
-```c#
-   builder.Services.AddOpenApi(options =>
-            {
-                options.AddDocumentTransformer((document, context, cancellationToken) =>
-                {
-                    // 1. Ensure Components object exists
-                    document.Components ??= new OpenApiComponents();
-
-                    // 2. Ensure SecuritySchemes dictionary exists (Fixes NullReferenceException)
-                    document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
-
-                    // 3. Define Security Scheme
-                    var securityScheme = new OpenApiSecurityScheme
-                    {
-                        Type = SecuritySchemeType.Http,
-                        Scheme = "bearer",
-                        BearerFormat = "JWT",
-                        In = ParameterLocation.Header,
-                        Description = "Enter your JWT token here (no need to type 'Bearer' prefix)"
-                    };
-
-                    // 4. Safely set key
-                    document.Components.SecuritySchemes["Bearer"] = securityScheme;
-
-                    // 5. Attach requirement globally
-                    document.Security ??= new List<OpenApiSecurityRequirement>();
-
-                    var securityRequirement = new OpenApiSecurityRequirement
-                    {
-                        [new OpenApiSecuritySchemeReference("Bearer", document)] = new List<string>()
-                    };
-
-                    document.Security.Add(securityRequirement);
-
-                    return Task.CompletedTask;
-                });
-            });```
-
-
 # JWT Authentication in ASP.NET Core Web API
 
 ## What is JWT?
@@ -187,7 +147,7 @@ builder.Services.AddOpenApi(options =>
             Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
             Scheme = "bearer",
             BearerFormat = "JWT",
-            In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            In = ParameterLocation.Header,
             Description = "Enter your JWT token here (no need to type 'Bearer' prefix)"
         });
         return Task.CompletedTask;
