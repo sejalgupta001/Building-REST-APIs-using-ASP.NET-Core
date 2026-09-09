@@ -308,6 +308,7 @@ app.MapControllers();
 <img width="1760" height="831" alt="image" src="https://github.com/user-attachments/assets/d04c706f-9ac1-428e-9d9c-e1cf7b95c9c9" />
 
 **2️⃣ Call the protected endpoint with the correct token**
+*You will see the Authentication block appear on the root/Introduction page, allowing you to enter your JWT token once to authenticate all requests. *
 <img width="1533" height="712" alt="image" src="https://github.com/user-attachments/assets/9da187bc-0369-4eea-b2a8-e694bfe884a2" />
 
 
