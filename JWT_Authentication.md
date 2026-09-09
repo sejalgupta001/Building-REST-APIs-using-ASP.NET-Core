@@ -308,6 +308,8 @@ app.MapControllers();
 <img width="1760" height="831" alt="image" src="https://github.com/user-attachments/assets/d04c706f-9ac1-428e-9d9c-e1cf7b95c9c9" />
 
 **2️⃣ Call the protected endpoint with the correct token**
+<img width="1533" height="712" alt="image" src="https://github.com/user-attachments/assets/9da187bc-0369-4eea-b2a8-e694bfe884a2" />
+
 
 <img width="1768" height="852" alt="image" src="https://github.com/user-attachments/assets/ff864855-ebeb-45ce-85d7-db69a7aa4961" />
 
