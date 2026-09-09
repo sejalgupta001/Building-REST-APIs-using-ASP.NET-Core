@@ -114,7 +114,7 @@ public async Task<IActionResult> Login([FromBody] UserLoginDto dto)
     }
     else{
 
-        accessToken = user.RefreshToken;
+        refreshToken = user.RefreshToken;
     }
 
     return Ok(new
