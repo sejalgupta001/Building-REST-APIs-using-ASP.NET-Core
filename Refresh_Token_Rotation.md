@@ -1,6 +1,7 @@
 # Refresh Token + Rotation in ASP.NET Core Web API
 
-![Refresh Token](./RefreshToken.png)
+<img width="1401" height="752" alt="image" src="https://github.com/user-attachments/assets/ebb673b8-aedb-4593-95a4-b12b47ccfdfc" />
+
 
 ## LifeTime
 
