@@ -171,10 +171,16 @@ public async Task<IActionResult> RotationRefreshToken(int userId, string refresh
 [HttpPost("logout")]
 public async Task<IActionResult> Logout([FromBody] int userId)
 {
-   var user = await _context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
+    var user = await _context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
     if (user == null) return NotFound();
 
-    return Ok("Logged out");
+    // Invalidate stored refresh token so it cannot be rotated again
+    user.RefreshToken = null;
+    user.RefreshTokenExpiryTime = null;
+
+    await _context.SaveChangesAsync();
+
+    return Ok(new { Message = "Logged out successfully" });
 }
 ```
 
