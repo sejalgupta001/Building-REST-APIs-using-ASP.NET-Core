@@ -199,7 +199,7 @@ public class ProductsController : ControllerBase
 }
 ```
 
-`**Test**
+**Test**
 **Default**
 **URL:-https://localhost:7117/api/Products**
 
@@ -223,7 +223,7 @@ public class ProductsController : ControllerBase
 
 # 5. Strategy 3 — Header Versioning
 
-Pass Version For Header Paramater `GET /api/orders` + `X-Api-Version: 1.0
+Pass Version For Header Paramater `GET /api/orders` + X-Api-Version: 1.0
 
 **Program.cs**
 
@@ -269,9 +269,9 @@ public class UsersController : ControllerBase
 }
 ```
 
-`**Test**
+**Test**
 
-**GET /api/orders + `X-Api-Version: 1.0**
+**GET /api/orders + X-Api-Version: 1.0**
 
 
 <img width="1731" height="817" alt="HeaderV1" src="https://github.com/user-attachments/assets/844939fa-e25e-4fbc-8745-0803bfaaa9ad" />
