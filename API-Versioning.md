@@ -161,8 +161,9 @@ builder.Services.AddApiVersioning(options =>
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
 });
-
+```
 **`Controllers/QueryVersioning/ProductsController.cs`**
+```csharp
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 
