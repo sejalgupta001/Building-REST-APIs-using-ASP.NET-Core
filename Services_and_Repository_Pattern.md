@@ -1,6 +1,6 @@
 # Services & Repository Pattern in ASP.NET Core
 
-![Service&Repository Daigram](./Repo%20&%20Services.jpeg)
+<img width="1080" height="500" alt="image" src="https://github.com/user-attachments/assets/1a557d74-c8b3-4d51-94d6-eadf4e6b6a51" />
 
 
 
