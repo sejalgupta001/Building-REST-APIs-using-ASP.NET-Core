@@ -1,6 +1,7 @@
 ## What is Pagination?
 
-![Refresh Token](./Pagination.png)
+<img width="1408" height="768" alt="image" src="https://github.com/user-attachments/assets/57f90f30-d214-4e32-8117-34330e20f33b" />
+
 Pagination is the process of dividing a large amount of data into smaller pages, making it easier to view and manage.
 
 ---
@@ -63,13 +64,15 @@ public async Task<IActionResult> GetAllTasks(int pageNumber = 1, int pageSize = 
 
 ### Applying Pagination
 
-![Without Without](./Paging.png)
+<img width="1728" height="813" alt="image" src="https://github.com/user-attachments/assets/8022f655-dad0-401e-99fa-682d92c16bec" />
+
 
 ---
 
 # Filtering
 
-![Refresh Token](./Filtering.png)
+<img width="1408" height="768" alt="image" src="https://github.com/user-attachments/assets/2ff23e8a-b460-49fa-a0ed-c178a099b932" />
+
 
 ### Why do we use Filtering?
 
@@ -206,9 +209,10 @@ public async Task<IActionResult> GetTasks(
 ```
 
 ### Without Applying Flitering
+<img width="1738" height="823" alt="image" src="https://github.com/user-attachments/assets/b16e5e42-a99e-4ee9-bdea-a50a7cd9a566" />
 
-![Without Without](<./Filtaring(Without).png>)
 
 ### Apply a Flitering (TaskPriority)
 
-![With Without](<./Filtering(With).png>)
+<img width="1732" height="837" alt="image" src="https://github.com/user-attachments/assets/e5ae554a-35be-41b4-80e7-b52c24a034fe" />
+
