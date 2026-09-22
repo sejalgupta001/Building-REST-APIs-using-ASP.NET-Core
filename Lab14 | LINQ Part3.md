@@ -1,4 +1,4 @@
-# LINQ Joins
+# LINQ Part3 - Joins
 
 ## Types of Joins
 - Inner Join
