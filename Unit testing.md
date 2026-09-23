@@ -150,15 +150,15 @@ Replace `StudentApi` with your actual project name.
 
 2. Select **Add → New Project**.
 
-   <img width="721" height="730" alt="Add New Project" src="https://github.com/user-attachments/assets/bf9531f5-d5d7-4e7b-af1c-511987698209" />
+<img width="721" height="730" alt="image" src="https://github.com/user-attachments/assets/78dc9802-383e-480e-8f7e-c2101455faff" />
 
 3. In the **Create a new project** window, search for and select **xUnit Test Project**.
 
-   <img width="1533" height="363" alt="Select xUnit Test Project" src="https://github.com/user-attachments/assets/a31b1369-9883-4426-9b47-824228531eaa" />
+<img width="1533" height="363" alt="image" src="https://github.com/user-attachments/assets/2342e52f-3e0f-4e7f-ba28-3499eb67bbc1" />
 
 4. Enter the project name as **`StudentApi.Tests`** and click **Next**.
 
-   <img width="715" height="333" alt="Name Test Project" src="https://github.com/user-attachments/assets/761a12c8-c1f5-45a3-a316-4357dea9df55" />
+<img width="715" height="333" alt="image" src="https://github.com/user-attachments/assets/a3de42e4-c950-4482-b358-f7d0a7cad78a" />
 
 5. Complete the project creation steps and click **Create**.
 
@@ -167,11 +167,11 @@ Replace `StudentApi` with your actual project name.
    - Right-click **StudentApi.Tests**.
    - Select **Add → Project Reference**.
 
-   <img width="743" height="646" alt="Add Project Reference" src="https://github.com/user-attachments/assets/3955ff7f-bd02-42cb-bd60-b16e6e46d3a8" />
+<img width="743" height="646" alt="image" src="https://github.com/user-attachments/assets/b99e48bc-69b1-486a-8a56-f61ad77b8a51" />
 
 7. In the **Reference Manager**, select **StudentApi** and click **OK**.
 
-   <img width="1408" height="751" alt="Select StudentApi Project Reference" src="https://github.com/user-attachments/assets/f2476abb-f8b4-4b35-ab8d-e617a27a2aa4" />
+<img width="1408" height="751" alt="image" src="https://github.com/user-attachments/assets/2a0687b2-8afa-461d-a6a2-2fdc55a72652" />
 
 ---
 
@@ -309,7 +309,7 @@ Test Explorer
  ↓
 Run All
 ```
-<img width="791" height="323" alt="image" src="https://github.com/user-attachments/assets/3bf9244c-8a55-4a9f-b79b-449078f64772" />
+<img width="791" height="323" alt="image" src="https://github.com/user-attachments/assets/1d06d98c-b690-43e6-ad37-79e9f0eb6fe9" />
 
 A successful test shows a green check mark.
 
@@ -818,7 +818,7 @@ Verify
    ↓
 Check service was called once
 ```
-<img width="862" height="345" alt="image" src="https://github.com/user-attachments/assets/37a83d50-33e9-456e-86ec-4a6163e3c5ae" />
+<img width="862" height="345" alt="image" src="https://github.com/user-attachments/assets/defc9221-cc48-403b-8173-14e7c7b00f73" />
 
 ---
 
@@ -863,7 +863,7 @@ public async Task GetById_InvalidId_ReturnsNotFound()
     );
 }
 ```
-<img width="825" height="353" alt="image" src="https://github.com/user-attachments/assets/18c0a3a4-e728-40d4-92f1-4b0021a2130e" />
+<img width="825" height="353" alt="image" src="https://github.com/user-attachments/assets/39ba9f4a-4735-4d11-bcc4-b30d2c4f5610" />
 
 ---
 
