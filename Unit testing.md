@@ -492,31 +492,6 @@ public void Add_ValidStudent_IncreasesCount(Student student)
 ---
 
 # 3. Moq
-
-## The Problem
-
-Now consider a real application:
-
-```text
-Client
-   ↓
-Controller
-   ↓
-IStudentService
-   ↓
-Database
-```
-
-Suppose we want to test only the **Controller**.
-
-We do not want the test to depend on the real database.
-
-So we need a fake version of `IStudentService`.
-
-This is where **Moq** is useful.
-
----
-
 ## What is Moq?
 
 **Moq** is a mocking library for .NET.
@@ -552,195 +527,154 @@ dotnet add StudentApi.Tests package Moq
 ```
 
 ---
+# 4. Moq with Repository and Service Layers
 
-## Create an Interface
+In a layered application:
 
-Our controller will depend on this interface:
-Create this file in: StudentApi → Services → IStudentService.cs
+```text
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+Database
+```
+
+For unit testing, we test **one layer at a time**:
+
+| Class Being Tested  | Mock Dependency      |
+| ------------------- | -------------------- |
+| `StudentService`    | `IStudentRepository` |
+| `StudentController` | `IStudentService`    |
+
+> **Rule:** Mock the dependency of the class you are testing.
+
+---
+
+## 4.1 Testing Service with Mock Repository
+
+### Repository Interface
+
 ```csharp
-public interface IStudentService
+public interface IStudentRepository
 {
     Task<Student?> GetByIdAsync(int id);
 }
 ```
 
-The real service implements it:
+### Service
 
 ```csharp
 public class StudentService : IStudentService
 {
-    private readonly List<Student> _students = new()
+    private readonly IStudentRepository _repository;
+
+    public StudentService(IStudentRepository repository)
     {
-        new Student
-        {
-            Id = 1,
-            Name = "Asha",
-            Marks = 85
-        }
+        _repository = repository;
+    }
+
+    public async Task<Student?> GetByIdAsync(int id)
+    {
+        return await _repository.GetByIdAsync(id);
+    }
+}
+```
+
+### Unit Test
+
+```csharp
+[Fact]
+public async Task GetById_ValidId_ReturnsStudent()
+{
+    // Arrange
+
+    // Create the data that we expect the repository to return
+    var student = new Student
+    {
+        Id = 1,
+        Name = "Asha",
+        Marks = 85
     };
 
-    public Task<Student?> GetByIdAsync(int id)
-    {
-        var student = _students.FirstOrDefault(x => x.Id == id);
+    // Create a fake repository using Moq
+    // We will use this instead of the real database/repository
+    var mockRepository =
+        new Mock<IStudentRepository>();
 
-        return Task.FromResult(student);
-    }
+    // Tell the mock:
+    // "When GetByIdAsync(1) is called, return the student created above"
+    mockRepository
+        .Setup(x => x.GetByIdAsync(1))
+        .ReturnsAsync(student);
+
+    // Create the real StudentService
+    // Pass the fake repository to the service
+    var service =
+        new StudentService(mockRepository.Object);
+
+
+    // Act
+
+    // Call the actual method that we want to test
+    var result =
+        await service.GetByIdAsync(1);
+
+
+    // Assert
+
+    // Check that a student was returned
+    Assert.NotNull(result);
+
+    // Check that the returned student's name is correct
+    Assert.Equal("Asha", result.Name);
+
+
+    // Verify
+
+    // Check that the repository method was called exactly once
+    mockRepository.Verify(
+        x => x.GetByIdAsync(1),
+        Times.Once
+    );
 }
 ```
 
----
-
-## Controller
-Create this file in: StudentApi → Controllers → StudentController.cs
-```csharp
-using Microsoft.AspNetCore.Mvc;
-
-[ApiController]
-[Route("api/[controller]")]
-public class StudentController : ControllerBase
-{
-    private readonly IStudentService _studentService;
-
-    public StudentController(IStudentService studentService)
-    {
-        _studentService = studentService;
-    }
-
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {
-        var student = await _studentService.GetByIdAsync(id);
-
-        if (student == null)
-            return NotFound();
-
-        return Ok(student);
-    }
-}
-```
-
-Now we want to test this controller without using the real service.
-
----
-
-## Create a Mock
-
-First, create a mock:
-
-```csharp
-var mockService = new Mock<IStudentService>();
-```
-
-This creates a fake implementation of `IStudentService`.
-
-But the mock does not automatically know what it should return.
-
-So we configure it.
-
----
-
-## `.Setup()`
-
-Suppose we want:
+### Flow
 
 ```text
-If GetByIdAsync(1) is called
-        ↓
-Return Asha
+StudentService
+      ↓
+Mock IStudentRepository
+      ↓
+Return Student
+      ↓
+Check Result
 ```
 
-We use:
+We test the **real `StudentService`**, but use a **fake repository**.
 
-```csharp
-mockService
-    .Setup(x => x.GetByIdAsync(1))
-    .ReturnsAsync(student);
-```
+---
 
-### What happened?
+## 4.2 Testing Controller with Mock Service
+
+When testing the controller, we mock `IStudentService`.
 
 ```text
-Setup()
-   ↓
-Define what the mock should do
-
-ReturnsAsync()
-   ↓
-Define what it should return
-```
-
----
-
-## `.Object`
-
-Our controller needs an actual `IStudentService`.
-
-The mock itself is:
-
-```csharp
-Mock<IStudentService>
-```
-
-The mocked service object is obtained using:
-
-```csharp
-mockService.Object
-```
-
-So we can write:
-
-```csharp
-var controller =
-    new StudentController(mockService.Object);
-```
-
----
-
-## `.Verify()`
-
-Sometimes we also want to check:
-
-> Was the service method actually called?
-
-We use:
-
-```csharp
-mockService.Verify(
-    x => x.GetByIdAsync(1),
-    Times.Once
-);
-```
-
-`Times.Once` means the method should be called exactly once.
-
-Other useful options:
-
-```csharp
-Times.Never
-Times.Once
-Times.Exactly(2)
-```
-
----
-
-# 4. xUnit + Moq
-
-Now we combine everything we learned.
-
-We will test:
-
-```text
-Controller
-    ↓
+StudentController
+       ↓
 Mock IStudentService
-    ↓
-Returns test data
-    ↓
-Controller returns Ok()
+       ↓
+Test Data
 ```
 
-## Test: Student Found
-Create this file in: StudentApi.Tests → StudentControllerTests.cs
+### Student Found
+
+Create:
+
+**StudentApi.Tests → StudentControllerTests.cs**
+
 ```csharp
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -759,7 +693,8 @@ public class StudentControllerTests
             Marks = 85
         };
 
-        var mockService = new Mock<IStudentService>();
+        var mockService =
+            new Mock<IStudentService>();
 
         mockService
             .Setup(x => x.GetByIdAsync(1))
@@ -769,7 +704,8 @@ public class StudentControllerTests
             new StudentController(mockService.Object);
 
         // Act
-        var result = await controller.GetById(1);
+        var result =
+            await controller.GetById(1);
 
         // Assert
         var okResult =
@@ -788,82 +724,61 @@ public class StudentControllerTests
             Times.Once
         );
     }
+
+    [Fact]
+    public async Task GetById_InvalidId_ReturnsNotFound()
+    {
+        // Arrange
+        var mockService =
+            new Mock<IStudentService>();
+
+        mockService
+            .Setup(x => x.GetByIdAsync(99))
+            .ReturnsAsync((Student?)null);
+
+        var controller =
+            new StudentController(mockService.Object);
+
+        // Act
+        var result =
+            await controller.GetById(99);
+
+        // Assert
+        Assert.IsType<NotFoundResult>(result);
+
+        // Verify
+        mockService.Verify(
+            x => x.GetByIdAsync(99),
+            Times.Once
+        );
+    }
 }
 ```
 
-### Understand the Test Flow
+### Final Flow
 
 ```text
-Arrange
-   ↓
-Create student
-   ↓
-Create mock
-   ↓
-Configure mock response
-   ↓
-Create controller
+Testing Service
+      ↓
+Mock Repository
+      ↓
+Test Service Result
 
-Act
-   ↓
-Call GetById(1)
 
-Assert
-   ↓
-Check response is Ok
-   ↓
-Check returned student
-
-Verify
-   ↓
-Check service was called once
-```
-<img width="862" height="345" alt="image" src="https://github.com/user-attachments/assets/defc9221-cc48-403b-8173-14e7c7b00f73" />
-
----
-
-## Test: Student Not Found
-
-Now suppose the service returns `null`.
-
-We configure the mock:
-
-```csharp
-mockService
-    .Setup(x => x.GetByIdAsync(99))
-    .ReturnsAsync((Student?)null);
+Testing Controller
+      ↓
+Mock Service
+      ↓
+Test Controller Result
 ```
 
-Complete test:
+> **Remember:**
+> **Service Test → Mock Repository**
+> **Controller Test → Mock Service**
 
-```csharp
-[Fact]
-public async Task GetById_InvalidId_ReturnsNotFound()
-{
-    // Arrange
-    var mockService = new Mock<IStudentService>();
 
-    mockService
-        .Setup(x => x.GetByIdAsync(99))
-        .ReturnsAsync((Student?)null);
 
-    var controller =
-        new StudentController(mockService.Object);
-
-    // Act
-    var result = await controller.GetById(99);
-
-    // Assert
-    Assert.IsType<NotFoundResult>(result);
-
-    // Verify
-    mockService.Verify(
-        x => x.GetByIdAsync(99),
-        Times.Once
-    );
-}
-```
-<img width="825" height="353" alt="image" src="https://github.com/user-attachments/assets/39ba9f4a-4735-4d11-bcc4-b30d2c4f5610" />
+<img width="825" height="353" alt="image" src="https://github.com/user-attachments/assets/7cc57576-32cb-4fb0-ba66-f73cb6081506" />
 
 ---
 
